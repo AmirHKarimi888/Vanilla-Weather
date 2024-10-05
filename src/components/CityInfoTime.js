@@ -10,7 +10,7 @@ class CityInfoTime extends AppStructure {
         const time = getTime(store.thisLocTime?.formatted);
         store.now = `${time[0]}:${time[1]}:${time[2]}`;
 
-        setInterval(() => {
+        const timer = setInterval(() => {
             if (+time[2] < 59) {
                 time[2] = +time[2] + 1;
                 time[2] < 10 ? time[2] = `0${time[2]}` : null;
@@ -34,6 +34,12 @@ class CityInfoTime extends AppStructure {
             store.now = `${time[0]}:${time[1]}:${time[2]}`;
             this.select("#CityInfoTime").innerHTML = store.now;
         }, 1000)
+
+        this.select("#SearchBox input").addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                clearInterval(timer);
+            }
+        })
     }
 
     generateHTML () {

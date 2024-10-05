@@ -1,4 +1,5 @@
 import { AppStructure } from "../AppStructure";
+import store from "../store";
 
 class TodayWeatherTemp extends AppStructure {
 
@@ -8,7 +9,12 @@ class TodayWeatherTemp extends AppStructure {
 
     generateHTML () {
         setTimeout(() => this.handleEvents());
-        return /*html*/``
+        return /*html*/`
+        <div class="flex flex-col items-center">
+          <span>${Math.round(+store.weatherData?.list[0]?.main?.temp - 273.15)} ℃</span>
+          <span>Feels like ${Math.round(+store.weatherData?.list[0]?.main?.feels_like - 273.15)} ℃</span>
+        </div>
+        `
     }
 
     render () {

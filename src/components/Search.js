@@ -1,6 +1,8 @@
 import { AppStructure } from "../AppStructure";
 import store from "../store";
+import CityInfo from "./CityInfo";
 import Spinner from "./Spinner";
+import TodayWeather from "./TodayWeather";
 
 class Search extends AppStructure {
 
@@ -13,16 +15,13 @@ class Search extends AppStructure {
 
                 this.select("#SpinnerContainer").innerHTML = "";
                 this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
-                
-                await store.getWeatherData(searchInput)
-                .then(async () => {
-                    
-                    await store.getLocationInfo(store.weatherData?.city.coord.lat, store.weatherData?.city.coord.lon);
+
+                await store.getLocationInfoByCityName(searchInput)
+                .then(() => {
+                    CityInfo.render();
+                    TodayWeather.render();
+                    this.select("#SpinnerContainer").innerHTML = "";
                 })
-                .then(() => this.select("#SpinnerContainer").innerHTML = "")
-                // .then(() => this.select("#WeatherData").innerHTML = JSON.stringify(store.weatherData))
-                // .then(() => this.select("#ThisLocInfo").innerHTML = JSON.stringify(store.thisLocInfo))
-                // .then(() => this.select("#ThisLocTime").innerHTML = JSON.stringify(store.thisLocTime))
             }
         })
     }

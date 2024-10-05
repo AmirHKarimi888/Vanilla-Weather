@@ -14,7 +14,7 @@ class CityInfoDate extends AppStructure {
 
     generateHTML () {
         setTimeout(() => this.handleEvents());
-        return /*html*/`${store.now}`
+        return /*html*/`${store.today}`
     }
 
     render () {

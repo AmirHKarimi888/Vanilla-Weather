@@ -8,7 +8,9 @@ class TodayWeatherOthers extends AppStructure {
 
     generateHTML () {
         setTimeout(() => this.handleEvents());
-        return /*html*/``
+        return /*html*/`
+        <div class="flex flex-col items-center"></div>
+        `
     }
 
     render () {
