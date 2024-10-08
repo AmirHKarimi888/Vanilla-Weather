@@ -1,5 +1,6 @@
 import { AppStructure } from "../AppStructure";
 import store from "../store";
+import TodayWeatherStatusIcon from "./TodayWeatherStatusIcon";
 
 class TodayWeatherStatus extends AppStructure {
 
@@ -12,6 +13,7 @@ class TodayWeatherStatus extends AppStructure {
         return /*html*/`
         <div class="flex flex-col items-center">
           <span>${store.weatherData?.list[0]?.weather[0]?.main}</span>
+          <span id="TodayWeatherStatusIcon">${TodayWeatherStatusIcon.render()}</span>
         </div>
         `
     }

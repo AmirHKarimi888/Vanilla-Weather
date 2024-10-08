@@ -1,30 +1,32 @@
 import { AppStructure } from "../AppStructure";
 import useGeolocation from "../hooks/useGeolocation";
 import store from "../store";
+import CityInfo from "./CityInfo";
 import Spinner from "./Spinner";
+import TodayWeather from "./TodayWeather";
 
 class LocationBtn extends AppStructure {
 
   handleEvents() {
     const getLocationBtn = document.querySelector("#LocationBtn");
-    const { getGeolocation } = useGeolocation();
 
     getLocationBtn.addEventListener("click", async () => {
-
       this.select("#SpinnerContainer").innerHTML = "";
       this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
 
       if ("geolocation" in navigator) {
-        return navigator.geolocation.getCurrentPosition(async (position) => {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-            
-            await getGeolocation(lat, lon)
-            .then(() => this.select("#SpinnerContainer").innerHTML = "")
-            .then(() => this.select("#ThisLocInfo").innerHTML = JSON.stringify(store.thisLocInfo))
-        });
-    }
+          navigator.geolocation.getCurrentPosition(async (position) => {
+              let lat = position.coords.latitude;
+              let lon = position.coords.longitude;
 
+              await store.getLocationInfo(lat, lon)
+                  .then(() => this.select("#SpinnerContainer").innerHTML = "")
+                  .then(() => {
+                    CityInfo.render();
+                    TodayWeather.render();
+                  })
+          });
+      }
     })
 
   }

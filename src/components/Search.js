@@ -8,10 +8,10 @@ class Search extends AppStructure {
 
     handleEvents () {
         let searchInput = "";
-        this.select("#SearchBox input").addEventListener("change", () => searchInput = this.select("#SearchBox input").value);
-
+        
         this.select("#SearchBox input").addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
+                searchInput = this.select("#SearchBox input").value;
 
                 this.select("#SpinnerContainer").innerHTML = "";
                 this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
