@@ -9,9 +9,8 @@ import HourlyForcast from "./HourlyForcast";
 class LocationBtn extends AppStructure {
 
   handleEvents() {
-    const getLocationBtn = document.querySelector("#LocationBtn");
 
-    getLocationBtn.addEventListener("click", async () => {
+    this.select("#LocationBtn").addEventListener("click", async () => {
       this.select("#SpinnerContainer").innerHTML = "";
       this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
 

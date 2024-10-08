@@ -40,6 +40,10 @@ class CityInfoTime extends AppStructure {
                 clearInterval(timer);
             }
         })
+
+        this.select("#LocationBtn").addEventListener("click", async () => {
+            clearInterval(timer);
+        })
     }
 
     generateHTML () {
