@@ -17,8 +17,8 @@ class App extends AppStructure {
 
     handleEvents() {
 
-        this.select("#SpinnerContainer").innerHTML = "";
-        this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
+        this.select("#SpinnerContainer").classList.remove("hidden");
+        this.select("#MainContainer").classList.add("hidden");
 
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
@@ -26,8 +26,10 @@ class App extends AppStructure {
                 let lon = position.coords.longitude;
 
                 await store.getLocationInfo(lat, lon)
-                    .then(() => this.select("#SpinnerContainer").innerHTML = "")
                     .then(() => {
+                      this.select("#SpinnerContainer").classList.add("hidden");
+                      this.select("#MainContainer").classList.remove("hidden");
+
                       CityInfo.render();
                       TodayWeather.render();
                       DailyForcast.render();
@@ -41,41 +43,43 @@ class App extends AppStructure {
     generateHTML() {
         setTimeout(() => this.handleEvents());
         return /*html*/ `
-        <div class="w-[90%] mx-auto mt-5 flex items-center gap-5 md:justi">
-          <div class="w-[15%] md:w-[25%]">
-            ${ModeBtn.render()}
-          </div>
-
-          <div class="w-[70%] md:w-[50%]">
-            ${Search.render()}
-          </div>
-
-          <div class="w-[15%] md:w-[25%]">
-            ${LocationBtn.render()}
-          </div>
-
-          <div id="SpinnerContainer"></div>
+        <div id="MainContainer" class="dark:text-white">
+        <div class="w-[90%] mx-auto mt-5 flex items-center gap-5 md:justify-center">
+        <div class="w-[15%] md:w-[25%]">
+          ${ModeBtn.render()}
         </div>
 
-        <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between">
-          <div id="CityInfo" class="md:w-[40%]">
-            
-          </div>
-
-          <div id="TodayWeather" class="md:w-[60%]">
-            
-          </div>
+        <div class="w-[70%] md:w-[50%]">
+          ${Search.render()}
         </div>
 
-        <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between">
-          <div id="DailyForcast" class="md:w-[30%]">
+        <div class="w-[15%] md:w-[25%]">
+          ${LocationBtn.render()}
+        </div>
+      </div>
 
-          </div>
-
-          <div id="HourlyForcast" class="md:w-[70%]">
+      <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between gap-5">
+        <div id="CityInfo" class="md:w-[40%]">
           
-          </div>
         </div>
+
+        <div id="TodayWeather" class="md:w-[60%]">
+          
+        </div>
+      </div>
+
+      <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between gap-5">
+        <div id="DailyForcast" class="md:w-[30%]">
+
+        </div>
+
+        <div id="HourlyForcast" class="md:w-[70%]">
+        
+        </div>
+      </div>
+        </div>
+
+        <div id="SpinnerContainer" class="w-full h-screen flex justify-center items-center hidden">${Spinner.render()}</div>
         `
     }
 

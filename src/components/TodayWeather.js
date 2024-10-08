@@ -14,10 +14,10 @@ class TodayWeather extends AppStructure {
     generateHTML () {
         setTimeout(() => this.handleEvents());
         return /*html*/`
-        <div class="border p-5 rounded-lg grid grid-cols-3">
-          <div id="TodayWeatherTemp"></div>
-          <div id="TodayWeatherStatus"></div>
-          <div id="TodayWeatherOthers"></div>
+        <div class="border dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 p-5 rounded-lg grid md:grid-cols-3 grid-cols-2 gap-5">
+          <div id="TodayWeatherTemp" class="grid justify-center items-center"></div>
+          <div id="TodayWeatherStatus" class="grid justify-center items-center"></div>
+          <div id="TodayWeatherOthers" class="grid justify-center items-center"></div>
         </div>
         `
     }

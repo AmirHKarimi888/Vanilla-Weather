@@ -15,16 +15,20 @@ class Search extends AppStructure {
             if (event.key === "Enter") {
                 searchInput = this.select("#SearchBox input").value;
 
-                this.select("#SpinnerContainer").innerHTML = "";
-                this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
+                this.select("#SpinnerContainer").classList.remove("hidden");
+                this.select("#MainContainer").classList.add("hidden");
 
                 await store.getLocationInfoByCityName(searchInput)
                 .then(() => {
+                    this.select("#SearchBox input").value = "";
+
+                    this.select("#SpinnerContainer").classList.add("hidden");
+                    this.select("#MainContainer").classList.remove("hidden");
+
                     CityInfo.render();
                     TodayWeather.render();
                     DailyForcast.render();
                     HourlyForcast.render();
-                    this.select("#SpinnerContainer").innerHTML = "";
                 })
             }
         })

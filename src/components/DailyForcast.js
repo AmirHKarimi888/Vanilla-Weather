@@ -14,7 +14,7 @@ class DailyForcast extends AppStructure {
     generateHTML () {
         setTimeout(() => this.handleEvents());
         return /*html*/`
-        <ul class="border p-5 rounded-lg grid grid-cols-3">
+        <ul class="border dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 p-5 rounded-lg grid">
            ${
             store.weatherData?.list
         .filter(item => {
@@ -24,7 +24,7 @@ class DailyForcast extends AppStructure {
         })
         .map(item => {
                 return `
-                <li>
+                <li class="flex justify-between p-2 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded-md cursor-pointer">
                   <span>${WeatherStatusIcon.render(item)}</span>
                   
                   <span>

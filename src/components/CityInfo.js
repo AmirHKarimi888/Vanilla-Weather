@@ -15,9 +15,9 @@ class CityInfo extends AppStructure {
     generateHTML () {
         setTimeout(() => this.handleEvents());
         return /*html*/`
-        <div class="border p-5 rounded-lg">
-          <div id="CityInfoName"></div>
-          <div id="CityInfoTime"></div>
+        <div class="border dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 p-5 rounded-lg">
+          <div id="CityInfoName" class="font-bold text-lg"></div>
+          <div id="CityInfoTime" class="text-2xl"></div>
           <div id="CityInfoDate"></div>
         </div>
         `

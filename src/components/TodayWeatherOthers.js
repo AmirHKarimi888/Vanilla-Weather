@@ -10,10 +10,10 @@ class TodayWeatherOthers extends AppStructure {
     generateHTML () {
         setTimeout(() => this.handleEvents());
         return /*html*/`
-        <div class="flex flex-col items-center">
-           <span>Humidity: ${store.weatherData?.list[0]?.main?.humidity}%</span>
-           <span>Pressure: ${store.weatherData?.list[0]?.main?.pressure}hPa</span>
-           <span>Wind Speed: ${store.weatherData?.list[0]?.wind?.speed}km/h</span>
+        <div class="flex flex-col justify-start items-center text-sm">
+           <span>Humidity: <span class="font-bold">${store.weatherData?.list[0]?.main?.humidity}%</span></span>
+           <span>Pressure: <span class="font-bold">${store.weatherData?.list[0]?.main?.pressure}hPa</span></span>
+           <span>Wind Speed: <span class="font-bold">${store.weatherData?.list[0]?.wind?.speed}km/h</span></span>
         </div>
         `
     }

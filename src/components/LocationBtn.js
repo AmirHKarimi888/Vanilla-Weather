@@ -11,8 +11,9 @@ class LocationBtn extends AppStructure {
   handleEvents() {
 
     this.select("#LocationBtn").addEventListener("click", async () => {
-      this.select("#SpinnerContainer").innerHTML = "";
-      this.select("#SpinnerContainer").insertAdjacentHTML("afterbegin", Spinner.render());
+
+      this.select("#SpinnerContainer").classList.remove("hidden");
+      this.select("#MainContainer").classList.add("hidden");
 
       if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(async (position) => {
@@ -20,8 +21,11 @@ class LocationBtn extends AppStructure {
               let lon = position.coords.longitude;
 
               await store.getLocationInfo(lat, lon)
-                  .then(() => this.select("#SpinnerContainer").innerHTML = "")
                   .then(() => {
+
+                    this.select("#SpinnerContainer").classList.add("hidden");
+                    this.select("#MainContainer").classList.remove("hidden");
+
                     CityInfo.render();
                     TodayWeather.render();
                     DailyForcast.render();
