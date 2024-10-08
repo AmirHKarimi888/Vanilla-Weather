@@ -3,12 +3,14 @@ import store from "../store";
 import CityInfo from "./CityInfo";
 import Spinner from "./Spinner";
 import TodayWeather from "./TodayWeather";
+import DailyForcast from "./DailyForcast";
+import HourlyForcast from "./HourlyForcast";
 
 class Search extends AppStructure {
 
     handleEvents () {
         let searchInput = "";
-        
+
         this.select("#SearchBox input").addEventListener("keydown", async (event) => {
             if (event.key === "Enter") {
                 searchInput = this.select("#SearchBox input").value;
@@ -20,6 +22,8 @@ class Search extends AppStructure {
                 .then(() => {
                     CityInfo.render();
                     TodayWeather.render();
+                    DailyForcast.render();
+                    HourlyForcast.render();
                     this.select("#SpinnerContainer").innerHTML = "";
                 })
             }

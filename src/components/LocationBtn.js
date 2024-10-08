@@ -1,9 +1,10 @@
 import { AppStructure } from "../AppStructure";
-import useGeolocation from "../hooks/useGeolocation";
 import store from "../store";
 import CityInfo from "./CityInfo";
 import Spinner from "./Spinner";
 import TodayWeather from "./TodayWeather";
+import DailyForcast from "./DailyForcast";
+import HourlyForcast from "./HourlyForcast";
 
 class LocationBtn extends AppStructure {
 
@@ -24,6 +25,8 @@ class LocationBtn extends AppStructure {
                   .then(() => {
                     CityInfo.render();
                     TodayWeather.render();
+                    DailyForcast.render();
+                    HourlyForcast.render();
                   })
           });
       }

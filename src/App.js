@@ -6,6 +6,8 @@ import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import TodayWeather from "./components/TodayWeather";
 import { AppStructure } from "./AppStructure";
+import DailyForcast from "./components/DailyForcast";
+import HourlyForcast from "./components/HourlyForcast";
 
 class App extends AppStructure {
 
@@ -28,6 +30,8 @@ class App extends AppStructure {
                     .then(() => {
                       CityInfo.render();
                       TodayWeather.render();
+                      DailyForcast.render();
+                      HourlyForcast.render();
                     })
             });
         }
@@ -64,11 +68,12 @@ class App extends AppStructure {
         </div>
 
         <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between">
-          <div class="md:w-[40%]">
+          <div id="DailyForcast" class="md:w-[30%]">
+
           </div>
 
-          <div id="ThisLocTime" class="md:w-[60%]">
-          ${JSON.stringify(store.thisLocTime)}
+          <div id="HourlyForcast" class="md:w-[70%]">
+          
           </div>
         </div>
         `
