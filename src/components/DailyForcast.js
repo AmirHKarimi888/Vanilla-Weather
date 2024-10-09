@@ -14,7 +14,7 @@ class DailyForcast extends AppStructure {
     generateHTML () {
         setTimeout(() => this.handleEvents());
         return /*html*/`
-        <ul class="border dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 p-5 rounded-lg grid">
+        <ul class="border dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 p-5 rounded-lg">
            ${
             store.weatherData?.list
         .filter(item => {

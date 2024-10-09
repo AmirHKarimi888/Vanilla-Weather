@@ -9,7 +9,7 @@ class CityInfoName extends AppStructure {
 
     generateHTML () {
         setTimeout(() => this.handleEvents());
-        return /*html*/`${store.thisLocInfo?.city}`
+        return /*html*/`${store.thisLocInfo?.city}, <span class="font-normal text-sm">${store.thisLocInfo?.countryName}</span>`
     }
 
     render () {

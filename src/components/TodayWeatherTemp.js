@@ -11,7 +11,7 @@ class TodayWeatherTemp extends AppStructure {
         setTimeout(() => this.handleEvents());
         return /*html*/`
         <div class="flex flex-col items-center">
-          <span class="font-bold text-xl">${Math.round(+store.weatherData?.list[0]?.main?.temp - 273.15)} ℃</span>
+          <span class="font-bold text-3xl">${Math.round(+store.weatherData?.list[0]?.main?.temp - 273.15)} ℃</span>
           <span>Feels like ${Math.round(+store.weatherData?.list[0]?.main?.feels_like - 273.15)} ℃</span>
         </div>
         `

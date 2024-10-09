@@ -58,6 +58,7 @@ class App extends AppStructure {
         </div>
       </div>
 
+      <div class="mx-auto lg:w-[70%] md:w-[85%] sm:w-[85%] md:mt-10 flex flex-col justify-center items-center">
       <div class="w-[90%] md:flex-row sm:flex-col max-sm:flex-col mx-auto mt-5 flex justify-between gap-5">
         <div id="CityInfo" class="md:w-[40%]">
           
@@ -77,7 +78,8 @@ class App extends AppStructure {
         
         </div>
       </div>
-        </div>
+      </div>
+      </div>
 
         <div id="SpinnerContainer" class="w-full h-screen flex justify-center items-center hidden">${Spinner.render()}</div>
         `
